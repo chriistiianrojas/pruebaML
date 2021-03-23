@@ -1,6 +1,5 @@
 package xmenApp;
 
-import java.util.ArrayList;
 import java.util.Date;
 import static spark.Spark.before;
 import static spark.Spark.get;
@@ -11,7 +10,6 @@ import static spark.Spark.staticFiles;
 
 import java.net.ConnectException;
 import java.sql.Connection;
-import java.text.SimpleDateFormat;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -106,8 +104,6 @@ public class xmenApp {
 		post("/mutant/", (Request request, Response response) -> {
 			response.type("application/json");
 			JSONObject body = new JSONObject(request.body());
-			System.out.println("112" + request.body());
-			System.out.println("112" + body.toString());
 			if (body.get("dna") != null) {
 				JSONArray dna = body.getJSONArray("dna");
 				JSONObject result = XmenService.getService().validateDNA(dna);

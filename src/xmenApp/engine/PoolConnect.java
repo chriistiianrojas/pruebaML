@@ -39,11 +39,11 @@ public class PoolConnect {
 		config.setMaxLifetime(5000);
 		config.setConnectionTimeout(2000); // millis
 		config.setDriverClassName("org.postgresql.Driver");
-		//pruebaxmen.catmpis6c5xj.us-east-2.rds.amazonaws.com
+		// localhost
 
-		System.out.println("jdbc:postgresql://pruebaxmen.catmpis6c5xj.us-east-2.rds.amazonaws.com:" + xmenApp.getInstance().getProperty("db.port") + "/"
+		System.out.println("jdbc:postgresql://localhost:" + xmenApp.getInstance().getProperty("db.port") + "/"
 				+ xmenApp.getInstance().getProperty("db.name"));
-		config.setJdbcUrl("jdbc:postgresql://pruebaxmen.catmpis6c5xj.us-east-2.rds.amazonaws.com:" + xmenApp.getInstance().getProperty("db.port") + "/"
+		config.setJdbcUrl("jdbc:postgresql://localhost:" + xmenApp.getInstance().getProperty("db.port") + "/"
 				+ xmenApp.getInstance().getProperty("db.name"));
 		config.addDataSourceProperty("user", xmenApp.getInstance().getProperty("db.user"));
 		config.addDataSourceProperty("password", xmenApp.getInstance().getProperty("db.pass"));
