@@ -4,4 +4,9 @@
 Proyecto en JAVA
 
 
-Se realizo con el micro framework y icql BD
+Se realizo con el micro framework y postgres BD
+
+Para la ejecucion importar el proyecto al IDE e importar librerias.
+
+Importante la configuracion del proyecto esta en el archivo server.properties, esta lo spuertos y los datos de la BD
+
