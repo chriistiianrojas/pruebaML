@@ -13,6 +13,8 @@ import java.sql.Connection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.iciql.Constants;
+
 import xmenApp.engine.PoolConnect;
 import spark.Request;
 import spark.Response;
@@ -20,6 +22,8 @@ import xmenApp.services.XmenService;
 import xmenApp.util.PropertiesLoadUtil;
 
 public class xmenApp {
+
+	private static final Integer DEFAULT_PORT = 9090;
 
 	/**
 	 * Instance the running the service
@@ -68,7 +72,23 @@ public class xmenApp {
 	public Connection getConnection() throws ConnectException {
 		return CONNECT.getConnection();
 	}
+	
 
+	/**
+	 * Configuration the service
+	 */
+	private void registeredConfigurations() {
+
+		Integer paramPort = DEFAULT_PORT;
+		if (PROPS.getValue("server.prod.port") != null) {
+			paramPort = PROPS.getValue("server.prod.port").matches("\\d+")
+					? Integer.parseInt(PROPS.getValue("server.prod.port")) : DEFAULT_PORT;
+			;
+		}
+		port(paramPort);
+		staticFiles.expireTime(300);
+	}
+	
 	/**
 	 * Define the behavior the response by any request that arrive to server
 	 */
@@ -139,6 +159,7 @@ public class xmenApp {
 				instance.CONNECT = new PoolConnect();
 				try {
 					instance.CONNECT.getConnection();
+					instance.registeredConfigurations();
 					instance.load();
 					instance.root();
 					instance.xmen();
